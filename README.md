@@ -91,6 +91,7 @@ Currently, the application uses a **dummy predictor** for demonstration purposes
 
 ## 📁 Project Structure
 
+```bash
 meiyalagu_ai/
 ├── app.py                  # Flask main application
 ├── database.py             # SQLite database operations
