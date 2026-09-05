@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screening History | Meiyalagu AI</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>📋 Screening History</h1>
+            <p class="subtitle">View all past skin analyses</p>
+            <a href="/" class="back-link">← Back to Home</a>
+        </header>
+
+        <!-- History Table -->
+        {% if records %}
+            <div class="table-container">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Patient</th>
+                            <th>Date & Time</th>
+                            <th>Prediction</th>
+                            <th>Confidence</th>
+                            <th>Risk Level</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                        <tr>
+                            <td>{{ record['id'] }}</td>
+                            <td><strong>{{ record['patient_name'] }}</strong></td>
+                            <td>{{ record['timestamp'] }}</td>
+                            <td>{{ record['prediction'] }}</td>
+                            <td>{{ (record['confidence'] * 100)|round(0) }}%</td>
+                            <td>
+                                <span class="badge {% if record['risk_level'] == 'High Concern' %}badge-high{% else %}badge-low{% endif %}">
+                                    {% if record['risk_level'] == 'High Concern' %}🔴{% else %}🟢{% endif %}
+                                    {{ record['risk_level'] }}
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/download-pdf/{{ record['id'] }}" class="btn-small" target="_blank">📄 PDF</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="history-stats">
+                <p>Total screenings: <strong>{{ records|length }}</strong></p>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <p>📭 No screenings found yet.</p>
+                <p>Upload an image to get started!</p>
+                <a href="/" class="btn-primary">Go to Upload</a>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

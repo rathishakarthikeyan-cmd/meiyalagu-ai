@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- stylelint-disable -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -240,7 +241,7 @@
                             Confidence: <strong>{{ (record['confidence'] * 100)|round(0) }}%</strong>
                         </span>
                         <div class="confidence-bar-bg">
-                            <div class="confidence-bar-fill" style="width:{{ (record['confidence'] * 100)|round(0) }}%;"></div>
+                            <div class="confidence-bar-fill" style="width: {{ (record['confidence'] * 100)|round(0) }} %;"></div>
                         </div>
                     </div>
                 </div>

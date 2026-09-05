@@ -16,6 +16,9 @@
             <p class="disclaimer-banner">
                 ⚠️ This is an AI screening tool. Does not replace a dermatologist.
             </p>
+            <div class="nav-links">
+                <a href="/history" class="nav-link">📋 View Screening History</a>
+            </div>
         </header>
 
         <!-- Patient Name Input -->
@@ -54,7 +57,7 @@
                 </div>
 
                 <div class="result-grid">
-                    <!-- Left: Images -->
+                    <!-- LEFT: Images -->
                     <div class="image-panel">
                         <div class="image-box">
                             <h3>📷 Uploaded Image</h3>
@@ -69,13 +72,19 @@
                         </div>
                     </div>
 
-                    <!-- Right: Info -->
+                    <!-- RIGHT: Two Separate Cards -->
                     <div class="info-panel">
+                        <!-- Quality Badge -->
                         <div id="qualityBadge" class="badge badge-success">✅ Quality: Passed</div>
 
-                        <!-- Disease Classification Card -->
+                        <!-- ========================================== -->
+                        <!-- CARD 1: SKIN DISEASE CLASSIFICATION (BLUE) -->
+                        <!-- ========================================== -->
                         <div class="card disease-card">
-                            <h4>🧬 Skin Disease Classification</h4>
+                            <div class="card-header">
+                                <span class="card-icon">🧬</span>
+                                <h4>Skin Disease Classification</h4>
+                            </div>
                             <h3 id="className" class="prediction-name">Melanocytic Nevus</h3>
                             <div class="confidence-section">
                                 <span>Confidence: <strong id="confidenceValue">87%</strong></span>
@@ -85,15 +94,26 @@
                             </div>
                         </div>
 
-                        <!-- Cancer Risk Screening Card -->
+                        <!-- ========================================== -->
+                        <!-- CARD 2: CANCER RISK SCREENING (RED/AMBER)   -->
+                        <!-- ========================================== -->
                         <div class="card risk-card">
-                            <h4>🔴 Cancer Risk Screening</h4>
+                            <div class="card-header">
+                                <span class="card-icon">🚨</span>
+                                <h4>Cancer Risk Screening</h4>
+                            </div>
                             <div id="riskBadge" class="badge badge-low">🟢 Lower Concern</div>
                             <p id="recommendationText" class="recommendation">
                                 Monitor the lesion and consult a professional if changes occur.
                             </p>
                         </div>
 
+                        <!-- PDF DOWNLOAD BUTTON -->
+                        <a id="downloadPdfBtn" href="#" target="_blank" class="btn-pdf" style="display:none;">
+                            📄 Download PDF Report
+                        </a>
+
+                        <!-- Disclaimer -->
                         <div class="disclaimer-box">
                             ⚠️ This is an AI-assisted screening tool. 
                             It is not a clinical diagnosis. Always consult a qualified dermatologist.

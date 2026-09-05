@@ -54,6 +54,27 @@ header h1 {
     margin-top: 10px;
 }
 
+/* ────────── Navigation Links ────────── */
+.nav-links {
+    margin-top: 12px;
+}
+
+.nav-link {
+    display: inline-block;
+    background: #eef3f8;
+    color: #0b2a44;
+    padding: 8px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.nav-link:hover {
+    background: #dce6ef;
+}
+
 /* ────────── Patient Input ────────── */
 .patient-input {
     margin: 18px 0 12px;
@@ -273,18 +294,31 @@ header h1 {
     box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
+/* Disease Card: Blue Theme */
 .disease-card {
     border-left: 5px solid #1a73e8;
 }
 
+/* Risk Card: Red/Amber Theme */
 .risk-card {
-    border-left: 5px solid #e67e22;
+    border-left: 5px solid #dc3545;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.card-icon {
+    font-size: 18px;
 }
 
 .card h4 {
     font-size: 14px;
     color: #4a6a85;
-    margin-bottom: 8px;
+    margin: 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -330,6 +364,28 @@ header h1 {
     line-height: 1.5;
 }
 
+/* ── PDF Button ── */
+.btn-pdf {
+    display: inline-block;
+    background: #dc3545;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-pdf:hover {
+    background: #b02a37;
+    color: white;
+}
+
+/* ── Disclaimer ── */
 .disclaimer-box {
     font-size: 13px;
     color: #6a7a8a;
@@ -337,6 +393,114 @@ header h1 {
     padding: 14px 18px;
     border-radius: 12px;
     border: 1px solid #e2eaf1;
+}
+
+/* ────────── History Page ────────── */
+.back-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.history-table thead {
+    background: #f0f6fc;
+}
+
+.history-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #0b2a44;
+    font-size: 14px;
+    border-bottom: 2px solid #dce6ef;
+}
+
+.history-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eef3f8;
+    font-size: 14px;
+    color: #1a3b5d;
+}
+
+.history-table tr:hover td {
+    background: #f8fbfe;
+}
+
+.history-table .badge {
+    font-size: 12px;
+    padding: 4px 12px;
+}
+
+.btn-small {
+    display: inline-block;
+    background: #1a73e8;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.btn-small:hover {
+    background: #1558b0;
+}
+
+.history-stats {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: #f8fbfe;
+    border-radius: 12px;
+    border: 1px solid #e2eaf1;
+    text-align: center;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.empty-state p {
+    font-size: 18px;
+    color: #4a6a85;
+    margin: 8px 0;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: #1a73e8;
+    color: white;
+    padding: 12px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 16px;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #1558b0;
 }
 
 /* ────────── Responsive ────────── */
@@ -353,5 +517,9 @@ header h1 {
     .patient-input {
         flex-direction: column;
         align-items: stretch;
+    }
+    .btn-pdf {
+        width: 100%;
+        text-align: center;
     }
 }
