@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meiyalagu AI - Skin Screening</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🩺 Meiyalagu AI</h1>
+            <p class="subtitle">Intelligent Skin Disease &amp; Skin Cancer Risk Screening</p>
+            <p class="disclaimer-banner">
+                ⚠️ This is an AI screening tool. Does not replace a dermatologist.
+            </p>
+        </header>
+
+        <!-- Patient Name Input -->
+        <div class="patient-input">
+            <label for="patientName">👤 Patient Name (Optional):</label>
+            <input type="text" id="patientName" placeholder="Enter patient name (e.g., John Doe)" />
+            <p class="hint">If left blank, we'll use "Anonymous"</p>
+        </div>
+
+        <!-- Upload Area -->
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📸</div>
+            <p><strong>Drag &amp; drop</strong> your skin lesion image here</p>
+            <p>or</p>
+            <button type="button" onclick="document.getElementById('fileInput').click()">
+                Browse Files
+            </button>
+            <input type="file" id="fileInput" accept="image/*" style="display:none" />
+            <p class="file-hint">Supports JPG, PNG, JPEG</p>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading" style="display:none;">
+            <div class="spinner"></div>
+            <p>🧠 Analyzing with AI... Please wait.</p>
+        </div>
+
+        <!-- Results Dashboard -->
+        <div id="results" style="display:none;">
+            <div class="result-card">
+                <h2>📋 Screening Result</h2>
+
+                <!-- Trend Alert (shown if risk escalated) -->
+                <div id="trendAlert" style="display:none;" class="trend-alert">
+                    ⚠️ <span id="trendMessage"></span>
+                </div>
+
+                <div class="result-grid">
+                    <!-- Left: Images -->
+                    <div class="image-panel">
+                        <div class="image-box">
+                            <h3>📷 Uploaded Image</h3>
+                            <img id="originalImage" src="#" alt="Uploaded lesion" />
+                        </div>
+                        <div class="image-box">
+                            <h3>🔥 AI Attention (Grad-CAM)</h3>
+                            <img id="gradcamImage" src="#" alt="Grad-CAM heatmap" />
+                            <p class="heatmap-note">
+                                <em>Highlighted region shows what the AI focused on.</em>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right: Info -->
+                    <div class="info-panel">
+                        <div id="qualityBadge" class="badge badge-success">✅ Quality: Passed</div>
+
+                        <!-- Disease Classification Card -->
+                        <div class="card disease-card">
+                            <h4>🧬 Skin Disease Classification</h4>
+                            <h3 id="className" class="prediction-name">Melanocytic Nevus</h3>
+                            <div class="confidence-section">
+                                <span>Confidence: <strong id="confidenceValue">87%</strong></span>
+                                <div class="confidence-bar-bg">
+                                    <div id="confidenceFill" class="confidence-bar-fill" style="width:87%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cancer Risk Screening Card -->
+                        <div class="card risk-card">
+                            <h4>🔴 Cancer Risk Screening</h4>
+                            <div id="riskBadge" class="badge badge-low">🟢 Lower Concern</div>
+                            <p id="recommendationText" class="recommendation">
+                                Monitor the lesion and consult a professional if changes occur.
+                            </p>
+                        </div>
+
+                        <div class="disclaimer-box">
+                            ⚠️ This is an AI-assisted screening tool. 
+                            It is not a clinical diagnosis. Always consult a qualified dermatologist.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
