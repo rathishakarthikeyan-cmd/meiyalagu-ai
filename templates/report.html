@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meiyalagu AI - Medical Screening Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+            padding: 40px;
+            color: #1a2a3a;
+        }
+        .report-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #d0dde8;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        /* Header */
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #1a73e8;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #0b2a44;
+            letter-spacing: 1px;
+        }
+        .header h1 span {
+            color: #1a73e8;
+        }
+        .header .subtitle {
+            font-size: 16px;
+            color: #4a6a85;
+            margin-top: 4px;
+        }
+        .header .disclaimer-badge {
+            display: inline-block;
+            background: #fff6e5;
+            color: #8a6d3b;
+            font-size: 12px;
+            padding: 6px 18px;
+            border-radius: 30px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        /* Patient & Date */
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            background: #f4f8fc;
+            padding: 14px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+        .meta-info strong {
+            color: #0b2a44;
+        }
+        /* Two Column Layout */
+        .report-grid {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .image-panel {
+            flex: 1;
+            min-width: 200px;
+        }
+        .image-panel .img-box {
+            border: 1px solid #e2eaf1;
+            border-radius: 10px;
+            padding: 8px;
+            background: #fafcfe;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .image-panel .img-box h4 {
+            font-size: 13px;
+            color: #4a6a85;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .image-panel .img-box img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 6px;
+        }
+        .info-panel {
+            flex: 1.2;
+            min-width: 250px;
+        }
+        /* Cards */
+        .card {
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            border-left: 5px solid #ccc;
+            background: #fafcfe;
+            border: 1px solid #e2eaf1;
+            border-left-width: 6px;
+        }
+        .card-disease {
+            border-left-color: #1a73e8;
+        }
+        .card-risk {
+            border-left-color: #dc3545;
+        }
+        .card h3 {
+            font-size: 16px;
+            color: #0b2a44;
+            margin-bottom: 6px;
+        }
+        .card .prediction-name {
+            font-size: 22px;
+            color: #0b2a44;
+            font-weight: 700;
+            margin: 4px 0 8px;
+        }
+        .confidence-bar-bg {
+            background: #e2eaf1;
+            border-radius: 30px;
+            height: 10px;
+            width: 100%;
+            margin-top: 4px;
+        }
+        .confidence-bar-fill {
+            background: #1a73e8;
+            height: 10px;
+            border-radius: 30px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .badge-low {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        .badge-high {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .recommendation-text {
+            background: #f8fbfe;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 15px;
+            line-height: 1.5;
+            border: 1px solid #eef3f8;
+        }
+        /* Disclaimer */
+        .footer-disclaimer {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #eef3f8;
+            font-size: 12px;
+            color: #7a8fa0;
+            text-align: center;
+            line-height: 1.6;
+        }
+        .footer-disclaimer strong {
+            color: #4a6a85;
+        }
+        .footer-disclaimer .footer-note {
+            font-size: 14px;
+            color: #2c4a6a;
+            margin-top: 6px;
+        }
+        .watermark {
+            color: #b0c4d8;
+            font-size: 10px;
+            text-align: right;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>🩺 Meiyalagu <span>AI</span></h1>
+            <p class="subtitle">Intelligent Skin Disease &amp; Skin Cancer Risk Screening</p>
+            <span class="disclaimer-badge">⚠️ AI-Assisted Screening Tool</span>
+        </div>
+
+        <!-- PATIENT & DATE -->
+        <div class="meta-info">
+            <span><strong>👤 Patient:</strong> {{ record['patient_name'] }}</span>
+            <span><strong>📅 Date:</strong> {{ record['timestamp'] }}</span>
+            <span><strong>🆔 Report ID:</strong> #{{ record['id'] }}</span>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="report-grid">
+            <!-- IMAGES -->
+            <div class="image-panel">
+                <div class="img-box">
+                    <h4>📷 Uploaded Image</h4>
+                    {% if img_b64 %}
+                        <img src="data:image/jpeg;base64,{{ img_b64 }}" alt="Uploaded Lesion" />
+                    {% else %}
+                        <p style="color:#999;font-size:13px;">Image not available</p>
+                    {% endif %}
+                </div>
+                <div class="img-box">
+                    <h4>🔥 AI Attention (Grad-CAM)</h4>
+                    {% if gradcam_b64 %}
+                        <img src="data:image/jpeg;base64,{{ gradcam_b64 }}" alt="Grad-CAM Heatmap" />
+                    {% else %}
+                        <p style="color:#999;font-size:13px;">Heatmap not available</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- RESULTS -->
+            <div class="info-panel">
+                <!-- DISEASE CARD -->
+                <div class="card card-disease">
+                    <h3>🧬 Disease Classification</h3>
+                    <div class="prediction-name">{{ record['prediction'] }}</div>
+                    <div>
+                        <span style="font-size:14px;color:#1a3b5d;">
+                            Confidence: <strong>{{ (record['confidence'] * 100)|round(0) }}%</strong>
+                        </span>
+                        <div class="confidence-bar-bg">
+                            <div class="confidence-bar-fill" style="width:{{ (record['confidence'] * 100)|round(0) }}%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RISK CARD -->
+                <div class="card card-risk">
+                    <h3>🚨 Cancer Risk Screening</h3>
+                    <span class="badge {% if record['risk_level'] == 'High Concern' %}badge-high{% else %}badge-low{% endif %}">
+                        {% if record['risk_level'] == 'High Concern' %}🔴{% else %}🟢{% endif %}
+                        {{ record['risk_level'] }}
+                    </span>
+                    <div class="recommendation-text">
+                        <strong>Recommendation:</strong><br />
+                        {{ record['recommendation'] }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER DISCLAIMER -->
+        <div class="footer-disclaimer">
+            <p>
+                <strong>⚠️ Important Disclaimer:</strong> This is an <strong>AI-assisted screening tool</strong> and 
+                does <strong>not</strong> replace a clinical dermatologist. It is designed for educational and 
+                decision-support purposes only. Always consult a qualified healthcare professional for diagnosis and treatment.
+            </p>
+            <p class="footer-note">
+                📋 This report was generated automatically by Meiyalagu AI.
+            </p>
+            <div class="watermark">Generated on: {{ record['timestamp'] }}</div>
+        </div>
+    </div>
+</body>
+</html>
